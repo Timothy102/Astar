@@ -1,6 +1,10 @@
 [package]
 name = "shiden-runtime"
+<<<<<<< HEAD
 version = "3.8.0"
+=======
+version = "3.7.0"
+>>>>>>> 9454ca97 (upgraded shibuya and shiden runtimes from using dapps-staking v2.0.0 to v2.1.0 (fixed era length))
 authors = ["Stake Technologies <devops@stake.co.jp>"]
 edition = "2018"
 build = "build.rs"
@@ -79,9 +83,17 @@ frame-try-runtime = { git = "https://github.com/paritytech/substrate", branch = 
 try-runtime-cli = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.16", default-features = false, optional = true }
 
 # Astar pallets
+<<<<<<< HEAD
 pallet-block-reward = { git = "https://github.com/AstarNetwork/astar-frame", branch = "polkadot-v0.9.16", default-features = false }
 pallet-custom-signatures = { git = "https://github.com/AstarNetwork/astar-frame", branch = "polkadot-v0.9.16", default-features = false }
 pallet-dapps-staking = { git = "https://github.com/AstarNetwork/astar-frame", branch = "polkadot-v0.9.16", default-features = false }
+=======
+
+pallet-block-reward = { git = "https://github.com/AstarNetwork/astar-frame", tag = "pallet-block-reward-3.0.0/polkadot-0.9.13", default-features = false }
+pallet-custom-signatures = { git = "https://github.com/AstarNetwork/astar-frame", tag = "pallet-custom-signatures-4.3.0/polkadot-0.9.13", default-features = false }
+pallet-precompile-staking = { git = "https://github.com/AstarNetwork/astar-frame", tag = "pallet-precompile-staking-0.2.1/polkadot-0.9.13", default-features = false }
+pallet-dapps-staking = { git = "https://github.com/AstarNetwork/astar-frame", branch = "fixed-era-length", default-features = false }
+>>>>>>> 9454ca97 (upgraded shibuya and shiden runtimes from using dapps-staking v2.0.0 to v2.1.0 (fixed era length))
 
 [build-dependencies]
 substrate-wasm-builder = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.16" }
