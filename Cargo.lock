@@ -4484,7 +4484,7 @@ dependencies = [
  "pallet-contracts-primitives",
  "pallet-contracts-rpc-runtime-api",
  "pallet-custom-signatures",
- "pallet-dapps-staking 2.1.0",
+ "pallet-dapps-staking 2.1.0 (git+https://github.com/AstarNetwork/astar-frame?branch=feature/individual-claim)",
  "pallet-ethereum",
  "pallet-evm",
  "pallet-evm-precompile-bn128",
@@ -5546,6 +5546,29 @@ name = "pallet-dapps-staking"
 version = "1.1.2"
 source = "git+https://github.com/AstarNetwork/astar-frame?branch=pallet-dapps-staking-1.1.2/polkadot-0.9.16#602e2f1d3b452a3b655535e11bbe0760c4e1e81b"
 dependencies = [
+ "frame-support",
+ "frame-system",
+ "num-traits",
+ "pallet-balances",
+ "pallet-session",
+ "pallet-timestamp",
+ "parity-scale-codec",
+ "scale-info",
+ "serde",
+ "sp-arithmetic",
+ "sp-core",
+ "sp-io",
+ "sp-runtime",
+ "sp-staking",
+ "sp-std",
+]
+
+[[package]]
+name = "pallet-dapps-staking"
+version = "2.1.0"
+source = "git+https://github.com/AstarNetwork/astar-frame?branch=feature/individual-claim#612a81a12c8e71fe48e946882a011af1dea0e00f"
+dependencies = [
+ "frame-benchmarking",
  "frame-support",
  "frame-system",
  "num-traits",
@@ -9675,7 +9698,7 @@ dependencies = [
  "pallet-collator-selection 3.0.0 (git+https://github.com/paritytech/cumulus?branch=polkadot-v0.9.16)",
  "pallet-collective",
  "pallet-custom-signatures",
- "pallet-dapps-staking 2.1.0",
+ "pallet-dapps-staking 2.1.0 (git+https://github.com/AstarNetwork/astar-frame?branch=feature/individual-claim)",
  "pallet-ethereum",
  "pallet-evm",
  "pallet-evm-precompile-bn128",
@@ -9743,7 +9766,7 @@ dependencies = [
  "pallet-collator-selection 3.0.0 (git+https://github.com/paritytech/cumulus?branch=polkadot-v0.9.16)",
  "pallet-collective",
  "pallet-custom-signatures",
- "pallet-dapps-staking 2.1.0",
+ "pallet-dapps-staking 2.1.0 (git+https://github.com/AstarNetwork/astar-frame?branch=polkadot-v0.9.16)",
  "pallet-ethereum",
  "pallet-evm",
  "pallet-evm-precompile-bn128",
