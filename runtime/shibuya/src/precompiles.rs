@@ -1,7 +1,5 @@
 //! The Shibuya Network EVM precompiles. This can be compiled with ``#[no_std]`, ready for Wasm.
 
-#![cfg_attr(not(feature = "std"), no_std)]
-
 use codec::Decode;
 use frame_support::dispatch::{Dispatchable, GetDispatchInfo, PostDispatchInfo};
 use pallet_evm::{Context, Precompile, PrecompileResult, PrecompileSet};
@@ -10,6 +8,8 @@ use pallet_evm_precompile_dispatch::Dispatch;
 use pallet_evm_precompile_modexp::Modexp;
 use pallet_evm_precompile_sha3fips::Sha3FIPS256;
 use pallet_evm_precompile_simple::{ECRecover, ECRecoverPublicKey, Identity, Ripemd160, Sha256};
+use pallet_evm_precompile_sr25519::Sr25519Precompile;
+use pallet_precompile_dapps_staking::DappsStakingWrapper;
 use sp_core::H160;
 use sp_std::fmt::Debug;
 use sp_std::marker::PhantomData;
@@ -26,7 +26,7 @@ impl<R> ShibuyaNetworkPrecompiles<R> {
     /// Return all addresses that contain precompiles. This can be used to populate dummy code
     /// under the precompile.
     pub fn used_addresses() -> impl Iterator<Item = H160> {
-        sp_std::vec![1, 2, 3, 4, 5, 6, 7, 8, 1024, 1025, 1026, 20480]
+        sp_std::vec![1, 2, 3, 4, 5, 6, 7, 8, 1024, 1025, 1026, 20481, 20482]
             .into_iter()
             .map(|x| hash(x))
     }
@@ -37,9 +37,12 @@ impl<R> ShibuyaNetworkPrecompiles<R> {
 /// 1024-2047 Precompiles that are not in Ethereum Mainnet
 impl<R> PrecompileSet for ShibuyaNetworkPrecompiles<R>
 where
-    R: pallet_evm::Config,
+    R: pallet_evm::Config + pallet_dapps_staking::Config,
     <R::Call as Dispatchable>::Origin: From<Option<R::AccountId>>,
-    R::Call: Dispatchable<PostInfo = PostDispatchInfo> + GetDispatchInfo + Decode,
+    R::Call: From<pallet_dapps_staking::Call<R>>
+        + Dispatchable<PostInfo = PostDispatchInfo>
+        + GetDispatchInfo
+        + Decode,
 {
     fn execute(
         &self,
@@ -70,6 +73,14 @@ where
                 input, target_gas, context, is_static,
             )),
             // Astar precompiles (starts from 0x5000):
+            // DappStaking 0x5001
+            a if a == hash(20481) => Some(DappsStakingWrapper::<R>::execute(
+                input, target_gas, context, is_static,
+            )),
+            // Sr25519     0x5002
+            a if a == hash(20482) => Some(Sr25519Precompile::<R>::execute(
+                input, target_gas, context, is_static,
+            )),
             // Default
             _ => None,
         }

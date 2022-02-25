@@ -117,7 +117,7 @@ impl SubstrateCli for Cli {
     }
 
     fn support_url() -> String {
-        "https://github.com/PlasmNetwork/Astar/issues/new".into()
+        "https://github.com/AstarNetwork/Astar/issues/new".into()
     }
 
     fn copyright_start_year() -> i32 {
@@ -178,10 +178,10 @@ impl SubstrateCli for RelayChainCli {
                 )
                 .unwrap(),
             ))
-        } else if id == "tokyo" {
+        } else if id == "osaka" {
             Ok(Box::new(
                 polkadot_service::WestendChainSpec::from_json_bytes(
-                    &include_bytes!("../res/tokyo.raw.json")[..],
+                    &include_bytes!("../res/osaka.raw.json")[..],
                 )
                 .unwrap(),
             ))
