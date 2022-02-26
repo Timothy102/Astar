@@ -7,7 +7,7 @@
 use codec::{Decode, Encode};
 use frame_support::{
     construct_runtime, parameter_types,
-    traits::{Contains, Currency, FindAuthor, Imbalance, Nothing, OnUnbalanced},
+    traits::{Contains, Currency, FindAuthor, Imbalance, Nothing, OnUnbalanced, OnRuntimeUpgrade},
     weights::{
         constants::{BlockExecutionWeight, ExtrinsicBaseWeight, WEIGHT_PER_SECOND},
         DispatchClass, Weight, WeightToFeeCoefficient, WeightToFeeCoefficients,
@@ -89,7 +89,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
     spec_name: create_runtime_str!("shibuya"),
     impl_name: create_runtime_str!("shibuya"),
     authoring_version: 1,
-    spec_version: 32,
+    spec_version: 33,
     impl_version: 0,
     apis: RUNTIME_API_VERSIONS,
     transaction_version: 2,
